@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: department-service
+  config:
+    import: "configserver:http://localhost:8088"
+
+logging:
+  level:
+    org.springframework.cloud.loadbalancer: TRACE
+    org.springframework.web.reactive.function.client: TRACE
+    org.springframework.cloud.client.discovery: TRACE
