@@ -9,13 +9,17 @@ spring:
         - id: employee-service
           uri: lb://employee-service
           predicates:
-            - Path = /employee/**
-            - Path=/employee
+            - Path=/employee/**
+            - Path=/employee         # <-- ADD THIS LINE
+
         - id: department-service
           uri: lb://department-service
           predicates:
-            - Path = /department/**
-            - Path= /department
+            - Path=/department/**
+            - Path=/department       # <-- ADD THIS LINE
+
+# ... rest of the configuration is correct ...
+
 
 server:
   port: 8060
@@ -29,5 +33,11 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+logging:
+  level:
+    org.springframework.cloud.loadbalancer: TRACE
+    org.springframework.web.reactive.function.client: TRACE
+    org.springframework.cloud.client.discovery: TRACE
 
 

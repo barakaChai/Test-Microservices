@@ -51,4 +51,10 @@ public class EmployeeController {
         LOGGER.info("Finding employees for departmentId: {}", departmentId);
         return repository.findByDepartmentId(departmentId); // Call the new repository method
     }
+
+    // In your Employee Service's Controller
+    @GetMapping("/by-department-ids")
+    public List<Employee> findByDepartmentIds(@RequestParam("ids") List<Long> ids) {
+        return repository.findByDepartmentIdIn(ids);
+    }
 }

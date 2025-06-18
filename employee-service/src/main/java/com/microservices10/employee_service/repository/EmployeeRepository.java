@@ -38,4 +38,10 @@ public class EmployeeRepository {
                 .filter(employee -> departmentId.equals(employee.departmentId()))
                 .collect(Collectors.toList());
     }
+
+    public List<Employee> findByDepartmentIdIn(List<Long> ids) {
+        return employees.stream()
+                .filter(employee -> ids.contains(employee.departmentId()))
+                .collect(Collectors.toList());
+    }
 }
